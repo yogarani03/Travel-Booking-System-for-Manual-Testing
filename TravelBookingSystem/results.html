@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+    <style>
+        body { font-family: Arial; text-align: center; background: #f2f2f2; }
+        .trip {
+            background: white; margin: 20px auto; width: 300px;
+            padding: 15px; border-radius: 10px;
+        }
+        button { background: green; color: white; padding: 8px; }
+    </style>
+</head>
+<body>
+
+<h2>Available Trips</h2>
+<h3 id="route"></h3>
+
+<div id="list"></div>
+
+<script>
+
+let searchData = JSON.parse(localStorage.getItem("searchData"));
+
+// ✅ FIXED crash (but still keep bug scenario)
+if (!searchData) {
+    document.body.innerHTML = "<h2>No Search Data</h2>";
+} else {
+
+    document.getElementById("route").innerText =
+        searchData.source + " → " + searchData.destination;
+
+    let trips = [
+    { type: "Bus", price: 1000 },
+    { type: "Train", price: 800 },
+    { type: "Flight", price: 3000 }
+];
+
+    let list = document.getElementById("list");
+
+    trips.forEach(t => {
+        let div = document.createElement("div");
+        div.className = "trip";
+
+        div.innerHTML = `
+            <p>${searchData.source} → ${searchData.destination}</p>
+            <p>${t.type} - ₹${t.price}</p>
+            <button onclick="book(${t.price})">Book</button>
+        `;
+
+        list.appendChild(div);
+    });
+}
+
+function book(price) {
+
+    let searchData = JSON.parse(localStorage.getItem("searchData"));
+
+    let booking = {
+        route: searchData.source + " → " + searchData.destination,
+        price: price
+    };
+
+    localStorage.setItem("bookingData", JSON.stringify(booking));
+
+    window.location.href = "booking.html";
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Itinerary</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f2f2;
+            text-align: center;
+        }
+
+        .box {
+            width: 350px;
+            margin: 100px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .status {
+            font-weight: bold;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Travel Itinerary</h2>
+
+    <p id="route"></p>
+    <p id="price"></p>
+    <p id="status" class="status"></p>
+</div>
+
+<script>
+
+let bookingData = JSON.parse(localStorage.getItem("bookingData"));
+
+if (!bookingData) {
+    document.body.innerHTML = "<h2>No Booking Data Found</h2>";
+} else {
+
+    document.getElementById("route").innerText =
+        "Route: " + bookingData.route;
+
+    document.getElementById("price").innerText =
+        "Price: ₹" + bookingData.price;
+
+    // 🔴 Intentional bug
+    if (bookingData.status === "Confirmed") {
+        document.getElementById("status").innerText = "Status: Confirmed";
+    } else {
+        document.getElementById("status").innerText = "Status: Failed";
+    }
+}
+
+</script>
+
+</body>
+</html>
