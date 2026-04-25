@@ -1,3 +1,5 @@
+Buggy Application-file:///C:/Users/Vithus/OneDrive/Desktop/ManualTestingProject/TravelBookingSystem/index.html
+Application-file:///C:/Users/Vithus/OneDrive/Desktop/ManualTestingProject/BugFixedSystem/index.html
 ##Travel Booking System (QA Project):
 ##Project Overview
 This project is a Travel Booking Web Application developed to demonstrate Manual Testing (QA) concepts including bug identification, reporting, and fixing.
